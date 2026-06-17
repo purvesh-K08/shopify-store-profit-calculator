@@ -1,0 +1,286 @@
+/* ============================================
+   RESULTS PANEL — Gradient cards & status banner
+   ============================================ */
+
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  animation: fadeInUp 0.5s ease both;
+  animation-delay: 0.15s;
+}
+
+/* ---- Action Buttons (Copy + Download) ---- */
+.results-panel__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
+
+.results-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border-radius: 100px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.results-action-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Copy button — success state */
+.results-action-btn--success {
+  border-color: var(--color-success) !important;
+  color: var(--color-success) !important;
+  background: rgba(0, 166, 126, 0.08) !important;
+  animation: pulse 0.3s ease;
+}
+
+/* PDF button — subtle accent */
+.results-action-btn--pdf:hover {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+  background: rgba(228, 87, 46, 0.06);
+}
+
+/* ---- Empty State ---- */
+.results-panel--empty {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-12) var(--space-8);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+
+.results-panel__empty-state {
+  text-align: center;
+  max-width: 320px;
+}
+
+.results-panel__empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+  animation: float 4s ease-in-out infinite;
+}
+
+.results-panel__empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.results-panel__empty-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ---- Status Banner ---- */
+.results-panel__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  animation: fadeInUp 0.4s ease both;
+}
+
+.results-panel__status--profit {
+  background: linear-gradient(135deg, rgba(0, 166, 126, 0.1) 0%, rgba(0, 128, 96, 0.08) 100%);
+  color: #006e52;
+  border: 1px solid rgba(0, 166, 126, 0.2);
+}
+
+.results-panel__status--loss {
+  background: linear-gradient(135deg, rgba(228, 87, 46, 0.1) 0%, rgba(196, 58, 26, 0.08) 100%);
+  color: #c43a1a;
+  border: 1px solid rgba(228, 87, 46, 0.2);
+}
+
+.results-panel__status-icon {
+  font-size: var(--font-size-xl);
+}
+
+/* ---- Cards Grid ---- */
+.results-panel__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.results-card {
+  position: relative;
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+  color: var(--color-text-inverse);
+  overflow: hidden;
+  animation: countUp 0.5s ease both;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  box-shadow: var(--shadow-md);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+
+.results-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Highlight card spans full width */
+.results-card--highlight {
+  grid-column: 1 / -1;
+}
+
+/* Card gradient variants */
+.results-card--revenue {
+  background: var(--gradient-card-revenue);
+}
+
+.results-card--cost {
+  background: var(--gradient-card-cost);
+}
+
+.results-card--profit {
+  background: var(--gradient-card-profit);
+}
+
+.results-card--loss {
+  background: var(--gradient-card-loss);
+}
+
+.results-card--roas {
+  background: var(--gradient-card-roas);
+}
+
+/* Subtle pattern overlay on cards */
+.results-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  transform: translate(30%, -30%);
+  pointer-events: none;
+}
+
+/* Card internals */
+.results-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.results-card__icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+}
+
+.results-card__label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.results-card__value {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+
+.results-card--highlight .results-card__value {
+  font-size: var(--font-size-3xl);
+}
+
+.results-card__description {
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* ---- Gateway Fee Detail ---- */
+.results-panel__detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-light);
+  font-size: var(--font-size-sm);
+}
+
+.results-panel__detail-label {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.results-panel__detail-value {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .results-panel__actions {
+    flex-direction: column;
+  }
+
+  .results-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .results-panel__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .results-card__value {
+    font-size: var(--font-size-xl);
+  }
+
+  .results-card--highlight .results-card__value {
+    font-size: var(--font-size-2xl);
+  }
+
+  .results-panel__detail {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+}
